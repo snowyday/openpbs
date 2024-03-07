@@ -3978,7 +3978,6 @@ class CgroupUtils(object):
                 with open(filename, 'r') as desc:
                     entries = desc.readline().split(' ')
                     entries_5 = 999_999
-
                     if isinstance(entries, list):
                         if isinstance(entries[5], int):
                             entries_5 = int(entries[5])
