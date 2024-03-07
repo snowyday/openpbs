@@ -3977,12 +3977,15 @@ class CgroupUtils(object):
             try:
                 with open(filename, 'r') as desc:
                     entries = desc.readline().split(' ')
+                    entries_5 = 999_999
+
                     if isinstance(entries, list):
                         if isinstance(entries[5], int):
                             entries_5 = int(entries[5])
-                    else:
-                        entries_5 = 999_999
-                        pbs.logmsg(pbs.EVENT_DEBUG, entries)
+                        else:
+                            pbs.logmsg(pbs.EVENT_DEBUG, filename)
+                    else:                        
+                        pbs.logmsg(pbs.EVENT_DEBUG, filename)
                     
                     if entries_5 != sid:
                         continue
