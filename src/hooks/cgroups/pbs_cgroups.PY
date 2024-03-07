@@ -3977,9 +3977,9 @@ class CgroupUtils(object):
             try:
                 with open(filename, 'r') as desc:
                     entries = desc.readline().split(' ')
-                    try:
+                    if isinstance(entries[5], int):
                         entries_5 = int(entries[5])
-                    except:
+                    else:
                         entries_5 = 999_999
                         pbs.logmsg(pbs.EVENT_DEBUG, entries)
                     
