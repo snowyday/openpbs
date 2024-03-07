@@ -3977,7 +3977,13 @@ class CgroupUtils(object):
             try:
                 with open(filename, 'r') as desc:
                     entries = desc.readline().split(' ')
-                    if int(entries[5]) != sid:
+                    try:
+                        entries_5 = int(entries[5])
+                    except:
+                        entries_5 = 999_999
+                        pbs.logmsg(pbs.EVENT_DEBUG, entries)
+                    
+                    if entries_5 != sid:
                         continue
                     if check_tasks:
                         # Thread group leader will have a task entry.
